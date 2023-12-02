@@ -21,6 +21,7 @@ stages{
         ssh ec2-user@51.20.254.253 /home/ec2-user/tomcat/bin/shutdown.sh
 
         ssh ec2-user@51.20.254.253 /home/ec2-user/tomcat/bin/startup.sh
+        """
         }
       }
     }
