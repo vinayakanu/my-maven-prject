@@ -14,12 +14,12 @@ stages{
   }
   stage(deploy){
     step{
-      sh """"
+      sh """
         scp target/myweb.war /home/ec2-user/tomcat/webapps/
         cd /home/ec2-user/tomcat/bin/
         ./shutdown.sh
         ./startup.sh
-      """"
+      """
       }
     }
   }
