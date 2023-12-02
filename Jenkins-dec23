@@ -15,7 +15,7 @@ stages{
   stage(deploy){
     steps{
       sh """
-       deploy adapters: [tomcat9(credentialsId: 'mani', path: '', url: 'http://51.20.249.205:8088/')], contextPath: 'myweb', war: 'target/myweb.war'
+       deploy adapters: [tomcat9(credentialsId: 'mani', path: '', url: 'http://51.20.254.253:8080/')], contextPath: 'myweb', war: 'target/myweb.war'
       """
       }
     }
