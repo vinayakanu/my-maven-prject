@@ -15,12 +15,7 @@ stages{
   stage(deploy){
     steps{
       sh """
-        pwd
-        whoami
-        scp target/myweb.war /home/ec2-user/tomcat/webapps/
-        cd /home/ec2-user/tomcat/bin/
-        ./shutdown.sh
-        ./startup.sh
+       deploy adapters: [tomcat9(credentialsId: 'mani', path: '', url: 'http://51.20.249.205:8088/')], contextPath: 'myweb', war: 'target/myweb.war'
       """
       }
     }
