@@ -1,18 +1,18 @@
 pipeline{
 agent any
 stages{
-  stage(gitcheckout){
+  stage("gitcheckout"){
     steps{
       git branch: 'main', credentialsId: 'github', url: 'https://github.com/vinayakanu/my-maven-prject.git'
     }
   }
-  stage(build){
+  stage("build"){
     steps{
       sh "mvn clean package"
       sh "mv target/*.war target/myweb.war"
     }
   }
-  stage(deploy){
+  stage("deploy"){
     steps{
       sh """
        deploy adapters: [tomcat9(credentialsId: 'mani', path: '', url: 'http://51.20.254.253:8080/')], contextPath: 'myweb', war: 'target/myweb.war'
