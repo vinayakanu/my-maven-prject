@@ -1,0 +1,26 @@
+pipeline{
+agent any
+stages{
+  stage(gitcheckout){
+    step{
+      git branch: 'main', credentialsId: 'github', url: 'https://github.com/vinayakanu/my-maven-prject.git'
+    }
+  }
+  stage(build){
+    step{
+      sh "mvn clean package"
+      sh "mv target/*.war target/myweb.war"
+    }
+  }
+  stage(deploy){
+    step{
+      sh """"
+        scp target/myweb.war /home/ec2-user/tomcat/webapps/
+        cd /home/ec2-user/tomcat/bin/
+        ./shutdown.sh
+        ./startup.sh
+      """"
+      }
+    }
+  }
+}
