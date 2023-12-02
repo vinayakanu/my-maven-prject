@@ -14,9 +14,11 @@ stages{
   }
   stage("deploy"){
     steps{
+      sshagent(["tomcat-server"])
       sh """
-       deploy adapters: [tomcat9(credentialsId: 'mani', path: '', url: 'http://51.20.254.253:8080/')], contextPath: 'myweb', war: 'target/myweb.war'
-      """
+       scp target/myweb.war ec2-user@51.20.254.253:/home/ec2-user/tomcat/webapps/
+       ssh ec2-user@51.20.254.253 /home/ec2-user/tomcat/bin/shutdown.sh
+       ssh ec2-user@51.20.254.253 /home/ec2-user/tomcat/bin/startup.sh
       }
     }
   }
