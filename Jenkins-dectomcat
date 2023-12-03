@@ -11,9 +11,12 @@ stages{
   }
   stage("build"){
     steps{
-      sh "mvn clean package"
+      sh "mvn clean sonar:sonar deploy"
       sh "mv target/*.war target/myweb.war"
     }
+  }
+  stage("upload to artifact"){
+  
   }
   stage("deploy"){
     steps{
