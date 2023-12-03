@@ -28,7 +28,7 @@ stages{
       nexusUrl: '172.31.21.63:8081', 
       nexusVersion: 'nexus3', 
       protocol: 'http', 
-      repository: 'sample-releases', 
+      repository: 'sample-snapshots', 
       version: '1.0'
     }
   }
